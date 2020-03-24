@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import './styles.css';
 export default function TicTacToe(props) {
-    const [socket, setSocket] = useState(io('http://localhost:5000/'));
+    const [socket, setSocket] = useState(io('https://tic-tac-toebackend.herokuapp.com/'));
     const [game, setGame] = useState(null);
     const [gameMoves, setGameMoves] = useState(null);
     const [canReceive, setCanReceive] = useState(true);

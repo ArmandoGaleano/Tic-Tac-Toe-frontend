@@ -5,7 +5,7 @@ import './styles.css';
 
 export default function Home() {
 
-    const [socket, setSocket] = useState(io('http://localhost:5000/'));
+    const [socket, setSocket] = useState(io('https://tic-tac-toebackend.herokuapp.com/'));
     const [data, setData] = useState({
         gameID: null,
         numberPlayer: null,
