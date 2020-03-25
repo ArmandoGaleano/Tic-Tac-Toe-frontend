@@ -28,6 +28,9 @@ div.message div:nth-child(1){
     margin: 30px 0 0 10px;
     font-family: 'Righteous', cursive;
 }
+div.message span{
+    word-break: break-all;
+}
 div.message div:nth-child(3){
     display: flex;
     justify-content: flex-end;
