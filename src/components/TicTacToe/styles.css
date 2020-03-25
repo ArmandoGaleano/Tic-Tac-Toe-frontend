@@ -10,6 +10,8 @@
     flex-wrap: wrap;
     background: gray;
     width: 95%;
+    overflow: hidden;
+    border-radius: 80px;
 }
 .block{
     display: flex;
@@ -48,7 +50,7 @@ b.blue{
     
 }
 #points > b {
-    color: red;
+    color: #5d5d5d;
 }
 #points div.player{
     display: flex;
@@ -72,6 +74,10 @@ b.blue{
 }
 @media only screen and (max-width: 450px){
     .block b{
-        font-size: 70px;
+        font-size: 60px;
+    }
+    #tic-tac-toe{
+        overflow: hidden;
+        border-radius: 20px;
     }
 }

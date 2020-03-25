@@ -5,6 +5,7 @@ import './App.css';
 
 
 function App() {
+  document.querySelector('body').setAttribute('style', `height: ${window.innerHeight}px`)
   return (
     <div className="App">
       <Router>

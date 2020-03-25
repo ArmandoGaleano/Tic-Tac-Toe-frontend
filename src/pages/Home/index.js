@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import io from 'socket.io-client';
 import './styles.css';
+import showModal from '../../components/Modal';
 
 export default function Home() {
 
@@ -11,14 +12,26 @@ export default function Home() {
         numberPlayer: null,
         redirectToGame: false
     });
-
-
-
+    //For game
     function createGame() {
         socket.emit('createGame', true);
     }
     function joinGame(gameID) {
         socket.emit("joinGame", gameID);
+    }
+
+    function copyToClipbord() {
+        /* Get the text field */
+        var copyText = document.getElementById("myInput");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+
+
     }
 
 
@@ -46,7 +59,7 @@ export default function Home() {
         })
         //When a new game has been created, will return the new game ID
         socket.on('newGameID', newGameID => {
-            alert("O id do jogo é: "+newGameID+" envie para seu amigo para jogar");
+            showModal("<p>O id do jogo é:<br><span class='text-primary'>" + newGameID + "</span> envie para seu amigo para jogar.</p>");
             setData({
                 gameID: newGameID,
                 numberPlayer: "player1",
@@ -55,6 +68,8 @@ export default function Home() {
             })
         })
     }, [])
+
+
     if (data.redirectToGame) {
         return (
             <Redirect
@@ -67,13 +82,17 @@ export default function Home() {
     }
 
     return (
-        <div className="container">
-            <form id="formGame">
-                <input type="text" id="gameID" placeholder="Insira o ID do jogo" />
-                <button type="submit" >Entrar</button>
+        <div className="container-fluid d-flex justify-content-center align-items-center">
+            <div className="col-12 col-sm-9 col-md-5 d-flex flex-column align-items-center bg-white rounded w-100 border mt-5 py-5 shadow">
+                <h2 className="font">Tic Tac Toe</h2>
+                <form id="formGame" className="d-flex">
 
-            </form>
-            <button id="createGame">Criar Jogo</button>
+                    <input type="text" className="form-control border-right-0 " id="gameID" placeholder="Insira o ID do jogo" />
+                    <button type="submit" className="btn btn-secondary font">Entrar</button>
+
+                </form>
+                <button id="createGame" className="btn btn-primary mt-5 font">Criar Jogo</button>
+            </div>
         </div>
     )
 }
